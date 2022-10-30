@@ -2,9 +2,7 @@ import Image from "next/image";
 import React from "react";
 
 function HeroBar({ children, imgSrc }) {
-	console.log("imgScr", imgSrc);
 	imgSrc === undefined ? (imgSrc = "/bg/home.jpg") : imgSrc;
-	console.log("imgScr", imgSrc);
 
 	return (
 		<div className="contents">

@@ -18,7 +18,7 @@ mongoose
 	.catch((e) => console.log("Error: ", e));
 
 const app = express();
-// app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //MODEL ROUTE CONTROLLERS

@@ -1,35 +1,33 @@
+import axios from "axios";
 import Link from "next/link";
+import PostCard from "../components/PostCard";
 import HeroBar from "./../components/Hero";
-export default function Home() {
+export default function Home({ data }) {
+	const { blogs } = data;
+	console.log(blogs);
 	return (
 		<>
 			<HeroBar imgSrc="/bg/home.jpg">
 				<h1>Clean Blog</h1>
 				<h2>A Blog Theme by Start TailwindCSS</h2>
 			</HeroBar>
+			{/* {JSON.stringify(blogs)} */}
 			<div className="w-6/12 mx-auto mt-20">
-				<div className="post-preview text-black">
-					<Link href={"/#"}>
-						<div className="hover:text-blue-600">
-							<h1 className="post-title ">
-								<strong>
-									Man must explore, and this is exploration at its greatest
-								</strong>
-							</h1>
-							<h3 class="post-subtitle">
-								Problems look mighty small from 150 miles up
-							</h3>
-						</div>
-					</Link>
-					<p class="post-meta text-gray-600">
-						Posted by{" "}
-						<Link href={"#"}>
-							<a className="text-black underline">User Name</a>
-						</Link>{" "}
-						on September 24, 2019
-					</p>
-				</div>
+				{blogs.map((post) => (
+					<PostCard key={post._id} post={post} />
+				))}
 			</div>
 		</>
 	);
+}
+
+export async function getStaticProps(context) {
+	const { data } = await axios({
+		url: "http://localhost:5000",
+	});
+	return {
+		props: {
+			data,
+		}, // will be passed to the page component as props
+	};
 }
