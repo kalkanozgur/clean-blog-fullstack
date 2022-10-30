@@ -1,17 +1,18 @@
 import React from "react";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
-import HeroBar from "./Hero";
+import HeadSet from "./../Head/index";
+import { wrapper } from "/src/app/store";
 
 function AppLayout({ children }) {
 	return (
-		<div className="LayoutContainer">
+		<div className="LayoutContainer   ">
+			<HeadSet />
 			<NavBar />
-			<HeroBar />
 			<main>{children}</main>
 			<Footer />
 		</div>
 	);
 }
 
-export default AppLayout;
+export default wrapper.withRedux(AppLayout);

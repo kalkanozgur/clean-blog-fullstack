@@ -1,12 +1,11 @@
 import "../styles/globals.css";
 import AppLayout from "../components/AppLayout";
 
-import { wrapper } from "./../app/store";
 import { AppProps } from "next/app";
+// import { wrapper } from "./../app/store";
 
 function MyApp({ Component, pageProps }: AppProps) {
 	console.log("pageProps", pageProps);
-	console.log("Component", JSON.stringify(Component));
 	return (
 		<>
 			<AppLayout>
