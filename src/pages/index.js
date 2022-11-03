@@ -4,7 +4,6 @@ import PostCard from "../components/PostCard";
 import HeroBar from "./../components/Hero";
 export default function Home({ data }) {
 	const { blogs } = data;
-	console.log(blogs);
 	return (
 		<>
 			<HeroBar imgSrc="/bg/home.jpg">
