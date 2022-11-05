@@ -20,10 +20,10 @@
 
 @layer components {
 	h1 {
-		@apply text-4xl;
+		@apply text-7xl;
 	}
 	h2 {
-		@apply text-3xl;
+		@apply text-4xl;
 	}
 	btn-ghost {
 		@apply rounded-xl;

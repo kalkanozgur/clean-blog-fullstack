@@ -1,10 +1,13 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import apiClient from "./../../features/api";
+
 import HeroBar from "../../components/Hero";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 function AddNewPostPage() {
 	const router = useRouter();
+	const [disabled, setDisabled] = useState(true);
 	const [title, setTitle] = useState("");
 	const [detail, setDetail] = useState("");
 	const [content, setContent] = useState("");
@@ -12,11 +15,20 @@ function AddNewPostPage() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		// {title === "" && content === ""} ? return : setTitle("")
-		if (title === "" && content === "") {
+		if (title === "" || content === "") {
 			return;
 		}
 		if (detail === "") setDetail(content);
-		router.push("/");
+		try {
+			apiClient.post("/blogs", { title, detail, content });
+			setDisabled(true);
+		} catch (err) {
+			console.log(err);
+			setDisabled(true);
+		} finally {
+			setDisabled(false);
+			router.push("/");
+		}
 	};
 	return (
 		<>
@@ -26,10 +38,12 @@ function AddNewPostPage() {
 			</HeroBar>
 
 			<div className="w-6/12 mx-auto mt-20">
-				<form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-					<button type="btn " onSubmit={handleSubmit}>
-						POST
-					</button>
+				<form className="flex flex-col gap-4 " onSubmit={handleSubmit}>
+					<div className="w-1/4 mx-auto">
+						<button className={"btn glass btn-wide"} onSubmit={handleSubmit}>
+							POST
+						</button>
+					</div>
 					<input
 						type="text"
 						placeholder="Type blog title here!"

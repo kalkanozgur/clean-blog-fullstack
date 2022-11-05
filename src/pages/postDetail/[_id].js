@@ -1,18 +1,21 @@
 import { useRouter } from "next/router";
 import React from "react";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import HeroBar from "../../components/Hero";
 
 function PostPage() {
 	const router = useRouter();
-	const { _id, post } = router.query;
+	const { _id, title, detail, content } = router.query;
 	return (
-		<div>
+		<>
 			<HeroBar imgSrc="/bg/home.jpg">
-				<h1>Clean Blog</h1>
-				<h2>A Blog Theme by Start TailwindCSS</h2>
+				<h1>{title}</h1>
+				<h2>{detail}</h2>
 			</HeroBar>
-			{JSON.stringify(router)}
-		</div>
+			<div className="w-6/12 mx-auto mt-20">
+				<ReactMarkdown>{content}</ReactMarkdown>
+			</div>
+		</>
 	);
 }
 

@@ -2,7 +2,6 @@ import React from "react";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 import HeadSet from "./../Head/index";
-import { wrapper } from "/src/app/store";
 
 function AppLayout({ children }) {
 	return (
@@ -15,4 +14,4 @@ function AppLayout({ children }) {
 	);
 }
 
-export default wrapper.withRedux(AppLayout);
+export default AppLayout;
